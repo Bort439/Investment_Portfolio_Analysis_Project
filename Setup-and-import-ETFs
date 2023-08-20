@@ -1,0 +1,59 @@
+import pandas as pd
+pd.set_option('display.float_format', lambda x: '%.2f' % x) #In this way print out the whoel number
+
+import datetime
+import numpy as np 
+import copy
+import seaborn as sns
+import matplotlib.pyplot as plt
+import openpyxl
+%matplotlib inline
+from pandas_datareader import data as pdr
+import statsmodels.api as sm
+from statsmodels import regression
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import r2_score
+import scipy.optimize as sco
+import statsmodels.api as sm
+plt.style.use('ggplot')
+
+All_Weather_B = pd.read_excel(r'C:\Users\oborg\OneDrive\Desktop\DateProject2\OM3H_MU.xlsx')
+All_Weather_B.info()
+All_Weather_B.sample(10)
+Decimal_open=All_Weather_B.Open/1000000
+print(Decimal_open)
+All_Weather_B.Open=Decimal_open
+All_Weather_B.sample(10)
+Decimal_close=All_Weather_B.Close/1000000
+print(Decimal_close)
+All_Weather_B.Close=Decimal_close
+All_Weather_B.sample(10)
+All_Weather_B=copy.deepcopy(All_Weather_B)
+All_Weather_B.dropna(inplace=True)
+All_Weather_B.sample(10)
+
+All_Weather_S=pd.read_excel(r"C:\Users\oborg\OneDrive\Desktop\DateProject2\IUSQ_DE.xlsx")
+All_Weather_S.info()
+All_Weather_S.sample(10)
+Decimal_open=All_Weather_S.Open/1000000
+print(Decimal_open)
+Decimal_close=All_Weather_S.Close/1000000
+print(Decimal_close)
+All_Weather_S.Open=Decimal_open
+All_Weather_S.Close=Decimal_close
+All_Weather_S=copy.deepcopy(All_Weather_S)
+All_Weather_S.dropna(inplace=True)
+All_Weather_S.tail(10)
+
+All_Weather_C=pd.read_excel(r"C:\Users\oborg\OneDrive\Desktop\DateProject2\CCUSAS_MI.xlsx")
+All_Weather_C.sample(10)
+All_Weather_C.tail(10)
+Decimal_open=All_Weather_C.Open/1000000
+print(Decimal_open)
+Decimal_close=All_Weather_C.Close/1000000
+print(Decimal_close)
+All_Weather_C.Open=Decimal_open
+All_Weather_C.Close=Decimal_close
+All_Weather_C=copy.deepcopy(All_Weather_C)
+All_Weather_C.dropna(inplace=True)
+All_Weather_C.sample(10)
