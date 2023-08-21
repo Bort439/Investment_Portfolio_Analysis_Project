@@ -1,0 +1,15 @@
+##### I consider an initial investment of 100k and divide it by each ETF
+##### The All weather portfolio is formed from 30% of stocks, 55% of bond (long and mid term), 15% of commodities
+In_investment=100000
+tot_stocks=(In_investment*0.30)/All_Weather_S.Open[0]
+print(tot_stocks)
+All_Weather_S['Value']=tot_stocks*All_Weather_S.Close
+All_Weather_S.tail(10)
+tot_bonds=(In_investment*0.55)/All_Weather_B.Open[0]
+print(tot_bonds)
+All_Weather_B['Value']=tot_bonds*All_Weather_B.Close
+All_Weather_B.head(10)
+tot_comm=(In_investment*0.15)/All_Weather_C.Open[0]
+print(tot_comm)
+All_Weather_C['Value']=tot_comm*All_Weather_C.Close
+All_Weather_C.head(10)
