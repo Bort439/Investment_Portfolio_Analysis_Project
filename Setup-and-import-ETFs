@@ -20,3 +20,30 @@ plt.style.use('ggplot')
 ##### 80-20 Portfolio, this portfolio is composed by 80% of stocks and 20% of bonds
 Stock80_20=pd.read_excel(r"C:\Users\oborg\OneDrive\Desktop\DateProject2\IUSQ_DE.xlsx")
 Bond80_20= pd.read_excel(r'C:\Users\oborg\OneDrive\Desktop\DateProject2\OM3H_MU.xlsx')
+
+Decimal_opn=Stock80_20.Open/1000000
+print(Decimal_opn)
+Stock80_20.Open=Decimal_opn
+Stock80_20.sample(10)
+
+Decimal_cls=Stock80_20.Close/1000000
+print(Decimal_cls)
+Stock80_20.Close=Decimal_cls
+Stock80_20.sample(10)
+
+Stock80_20=copy.deepcopy(Stock80_20)
+Stock80_20.dropna(inplace=True)
+Stock80_20.sample(10)
+
+Decimal_open=Bond80_20.Open/1000000
+print(Decimal_open)
+Bond80_20.Open=Decimal_open
+Bond80_20.sample(10)
+
+Decimal_close=Bond80_20.Close/1000000
+print(Decimal_close)
+Bond80_20.Close=Decimal_close
+Bond80_20.sample(10)
+Bond80_20=copy.deepcopy(Bond80_20)
+Bond80_20.dropna(inplace=True)
+Bond80_20.sample(10)
