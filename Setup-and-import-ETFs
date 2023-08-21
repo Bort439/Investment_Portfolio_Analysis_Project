@@ -17,43 +17,33 @@ import scipy.optimize as sco
 import statsmodels.api as sm
 plt.style.use('ggplot')
 
-All_Weather_B = pd.read_excel(r'C:\Users\oborg\OneDrive\Desktop\DateProject2\OM3H_MU.xlsx')
-All_Weather_B.info()
-All_Weather_B.sample(10)
-Decimal_open=All_Weather_B.Open/1000000
-print(Decimal_open)
-All_Weather_B.Open=Decimal_open
-All_Weather_B.sample(10)
-Decimal_close=All_Weather_B.Close/1000000
-print(Decimal_close)
-All_Weather_B.Close=Decimal_close
-All_Weather_B.sample(10)
-All_Weather_B=copy.deepcopy(All_Weather_B)
-All_Weather_B.dropna(inplace=True)
-All_Weather_B.sample(10)
+##### 70-30 Portfolio, this portfolio is composed by 70% of stocks and 30% of bonds
 
-All_Weather_S=pd.read_excel(r"C:\Users\oborg\OneDrive\Desktop\DateProject2\IUSQ_DE.xlsx")
-All_Weather_S.info()
-All_Weather_S.sample(10)
-Decimal_open=All_Weather_S.Open/1000000
-print(Decimal_open)
-Decimal_close=All_Weather_S.Close/1000000
-print(Decimal_close)
-All_Weather_S.Open=Decimal_open
-All_Weather_S.Close=Decimal_close
-All_Weather_S=copy.deepcopy(All_Weather_S)
-All_Weather_S.dropna(inplace=True)
-All_Weather_S.tail(10)
+Stock70_30=pd.read_excel(r"C:\Users\oborg\OneDrive\Desktop\DateProject2\IUSQ_DE.xlsx")
+Bond70_30= pd.read_excel(r'C:\Users\oborg\OneDrive\Desktop\DateProject2\OM3H_MU.xlsx')
 
-All_Weather_C=pd.read_excel(r"C:\Users\oborg\OneDrive\Desktop\DateProject2\CCUSAS_MI.xlsx")
-All_Weather_C.sample(10)
-All_Weather_C.tail(10)
-Decimal_open=All_Weather_C.Open/1000000
-print(Decimal_open)
-Decimal_close=All_Weather_C.Close/1000000
-print(Decimal_close)
-All_Weather_C.Open=Decimal_open
-All_Weather_C.Close=Decimal_close
-All_Weather_C=copy.deepcopy(All_Weather_C)
-All_Weather_C.dropna(inplace=True)
-All_Weather_C.sample(10)
+
+Opn_decimal=Stock70_30.Open/1000000
+print(Opn_decimal)
+Stock70_30.Open=Opn_decimal
+Stock70_30.sample(10)
+Cls_decimal=Stock70_30.Close/1000000
+print(Cls_decimal)
+Stock70_30.Close=Cls_decimal
+Stock70_30.sample(10)
+Stock70_30=copy.deepcopy(Stock70_30)
+Stock70_30.dropna(inplace=True)
+Stock70_30.sample(10)
+
+
+Open_decimal=Bond70_30.Open/1000000
+print(Open_decimal)
+Bond70_30.Open=Open_decimal
+Bond70_30.sample(10)
+Close_decimal=Bond70_30.Close/1000000
+print(Close_decimal)
+Bond70_30.Close=Close_decimal
+Bond70_30.sample(10)
+Bond70_30=copy.deepcopy(Bond70_30)
+Bond70_30.dropna(inplace=True)
+Bond70_30.sample(10)
