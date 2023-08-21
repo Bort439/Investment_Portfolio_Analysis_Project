@@ -1,0 +1,39 @@
+##### In this section I'll calculate the risk of the portfolio. Calculate the Correlation and Covariance, Sortino and Sharpe Ratio and the Standard Deviation
+
+common_time_periods = np.intersect1d(All_Weather_S.Date, All_Weather_B.Date)
+common_returns_S = All_Weather_S.Value[np.isin(All_Weather_S.Date, common_time_periods)]
+common_returns_B = All_Weather_B.Value[np.isin(All_Weather_B.Date, common_time_periods)]
+print(common_returns_S)
+print(common_returns_B)
+print(common_time_periods)
+
+correlation = np.corrcoef(common_returns_S, common_returns_B )[0, 1]
+print(correlation)
+
+time_periodsS_C = np.intersect1d(All_Weather_S.Date, All_Weather_C.Date)
+common_returns_S = All_Weather_S.Value[np.isin(All_Weather_S.Date, time_periodsS_C)]
+common_returns_C = All_Weather_C.Value[np.isin(All_Weather_C.Date, time_periodsS_C)]
+print(common_returns_S)
+print(common_returns_C)
+correlationS_C= np.corrcoef(common_returns_S, common_returns_C)[0, 1]
+print(correlationS_C)
+
+time_periodsB_C = np.intersect1d(All_Weather_B.Date, All_Weather_C.Date)
+B_C_returns_B = All_Weather_B.Value[np.isin(All_Weather_B.Date, time_periodsB_C)]
+B_C_returns_C = All_Weather_C.Value[np.isin(All_Weather_C.Date, time_periodsB_C)]
+print(B_C_returns_B)
+print(B_C_returns_C)
+correlationB_C= np.corrcoef(B_C_returns_B, B_C_returns_C)[0, 1]
+print(correlationB_C)
+
+weights = np.array([0.3, 0.55, 0.15])
+
+plt.plot(time_periodsB_C, B_C_returns_B)
+plt.plot(time_periodsB_C , B_C_returns_C)
+plt.plot(time_periodsS_C  , common_returns_S)
+plt.legend(['Bonds','Commodities','Stocks'])
+
+plt.plot(time_periodsB_C, B_C_returns_B -55000)
+plt.plot(time_periodsB_C , B_C_returns_C -15000)
+plt.plot(time_periodsS_C  , common_returns_S -30000)
+plt.legend(['retrunBonds','returnCommodities','returnStocks'])
