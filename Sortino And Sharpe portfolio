@@ -1,0 +1,49 @@
+##### Sortino and Sharpe Ratio
+avg_rtrn_S = np.mean(Stock70_30.Value - 70000)
+avg_rtrn_B = np.mean(Bond70_30.Value - 30000)
+
+print(avg_rtrn_S, avg_rtrn_B)
+
+downside_returnsS = Stock70_30.Value[Stock70_30.Value < 0]
+down_deviationS = np.std(downside_returnsS)
+
+downside_returnsB = Bond70_30.Value[Bond70_30.Value < 0]
+down_deviationB = np.std(downside_returnsB)
+
+N = 255 #Number of trading days in a year
+rf =0.042 #4,2% Treasury Rate 10 year
+epsilon = 1e-6  # A small value to avoid division by zero
+
+sortino_S = (avg_rtrn_S - rf) / (down_deviationS)
+sortino_B = (avg_rtrn_B - rf) / (down_deviationB)
+print(sortino_S, sortino_B)
+
+std_devS = np.std(Stock70_30.Value-70000)
+sharpeS = (avg_rtrn_S - rf) / std_devS
+
+std_devB = np.std(Bond70_30.Value-55000)
+sharpeB = (avg_rtrn_B - rf) / std_devB
+print(sharpeS, sharpeB)
+
+Portfolio_returns=((Stock70_30.Value - 70000) + (Bond70_30.Value - 30000))
+print(Portfolio_returns.fillna(0))
+avg_Portfolio_returns=Portfolio_returns.mean()
+print(avg_Portfolio_returns)
+downside_returns = Portfolio_returns[Portfolio_returns<0]
+
+year_return = (Portfolio_returns).mean()/252 
+downside_deviation = np.std(downside_returns, ddof=1)  # Use Bessel's correction by setting ddof=1
+sortino_ratio = (year_return - rf) / (downside_deviation)
+print('Sortino Ratio:', sortino_ratio)
+
+std_dev = Portfolio_returns.std(ddof=1)/np.sqrt(255)  # Use Bessel's correction by setting ddof=1
+print('Portfolio Standard Deviation:', std_dev)
+print('Portfolio Volatility:', portfolio_std_dev//100,'%')
+
+sharpe_ratio = (avg_Portfolio_returns - rf) / portfolio_std_dev
+print(sharpe_ratio)
+
+Portfolio_value=Portfolio_returns+100000
+print(Portfolio_value)
+plt.plot(Stock70_30.Date, Portfolio_returns)
+plt.plot(Stock70_30.Date, Portfolio_value)
