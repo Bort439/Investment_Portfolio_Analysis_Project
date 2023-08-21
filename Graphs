@@ -1,0 +1,28 @@
+All_Weather_S.Date = pd.to_datetime(All_Weather_S.Date)
+All_Weather_B.Date = pd.to_datetime(All_Weather_B.Date)
+All_Weather_C.Date = pd.to_datetime(All_Weather_C.Date)
+
+plt.plot(All_Weather_S.Date, All_Weather_S.Value, linestyle='solid')
+plt.title('Return On Stocks')
+plt.xlabel('Date')
+plt.ylabel('Value of Portfolio')
+
+
+plt.plot(All_Weather_B.Date, All_Weather_B.Value)
+plt.title('Return On Bonds')
+plt.xlabel('Date')
+plt.ylabel('Value of Portfolio')
+
+
+All_Weather_C.plot('Date', 'Value')
+plt.title('Return On Commodities')
+plt.xlabel('Date')
+plt.ylabel('Value of Portfolio')
+
+##### I'll calculate the final values for each category and the final total value
+final_value_S=All_Weather_S.Value.iloc[-1]
+print(final_value_S)
+final_value_B=All_Weather_B.Value.iloc[-1]
+print(final_value_B)
+final_value_C=All_Weather_C.Value.iloc[-1]
+print(final_value_C)
